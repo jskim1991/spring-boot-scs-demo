@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    function:
+      definition: first; second; sinkProducer;
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:19092
+        default:
+          consumer:
+            ackMode: MANUAL_IMMEDIATE
+      bindings:
+        first-in-0:
+          group: service
+          destination: orders
+        second-in-0:
+          group: service
+          destination: deliveries
+        producer-out-0:
+          destination: orders
+        producer-out-1:
+          destination: deliveries
+        sinkProducer-out-0:
+          destination: orders
